@@ -4,4 +4,4 @@ out/
 .vscode/
 .idea/
 *.log
-config.properties
+src/main/resources/config.properties
