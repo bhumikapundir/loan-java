@@ -144,6 +144,11 @@ public class ApplicationService {
             return appDao.findById(conn, id);
         }
     }
+    public List<LoanApplication> findByCustomer(int customerId) throws SQLException {
+        try (Connection conn = DbConnection.getConnection()) {
+           return appDao.findByCustomer(conn, customerId);
+        }
+    }
 
     public LoanApplication submit(int applicationId, String userCode)
             throws ValidationException, SQLException {
