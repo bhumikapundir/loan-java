@@ -26,18 +26,8 @@ public class CustomerService {
         LocalDate dob = c.getDateOfBirth();
         if (dob == null) {
             errors.add("Date of birth is required");
-        } else {
-            LocalDate today = BusinessClock.today();
-            if (dob.isAfter(today)) {
-                errors.add("Date of birth cannot be in the future");
-            } else {
-                int age = Period.between(dob, today).getYears();
-                if (age < ProductRules.minAge() || age > ProductRules.maxAge()) {
-                    errors.add("Age must be between " + ProductRules.minAge()
-                            + " and " + ProductRules.maxAge()
-                            + " (applicant is " + age + ")");
-                }
-            }
+        } else if (dob.isAfter(BusinessClock.today())) {
+            errors.add("Date of birth cannot be in the future");
         }
 
         String mobile = c.getMobile();

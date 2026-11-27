@@ -161,6 +161,9 @@ public class ApplicationService {
                 }
 
                 Customer customer = customerDao.findById(a.getCustomerId());
+                if (customer == null) {
+                         throw new ValidationException(List.of("Customer not found for this application"));
+                }
                 ProductRules.Rule rule = ProductRules.forProduct(a.getProduct());
                 List<String> reasons = new ArrayList<>();
 
